@@ -1,0 +1,120 @@
+  
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>
+    {% block title %}
+
+
+    {% endblock title %}
+    </title>
+  </head>
+  <body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <img src="https://ci5.googleusercontent.com/proxy/d7rx3nCBxTJPoJcXLtFCzNYNX5f2Y1pxW81JR-Jn5gnfEG45GllBBTx5xYHDP2tzl5CsXxmf-cNSZPa5kZuO6iXFKfxPssV7Hq7QvS5vS4ZwDAljNZ_bqgYyI7lAx6ivJsa8Gh02Vex-FXztV6c61cvott5MFKT7=s0-d-e1-ft#https://www.freelogodesign.org/file/app/client/thumb/c007e71d-1790-4ff6-9dca-f6f3e63f0f8c_200x200.png"  width= "100" height ="50"alt="...">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+       <li class="nav-item">
+        <a class="nav-link" href="/handleBlog">Blog</a>
+      </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/about">About Us</a>
+      </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/contact">Contact Us</a>
+    </li>
+    {% if user.is_authenticated %}
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <b>welcome{{request.user}}</b></a>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/login">Login</a>
+          <a class="dropdown-item" href="/signup">SignUp</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/logout">LogOut</a>
+        </div>
+      </li>
+    
+    {% else %}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Authentication
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/login">Login</a>
+          <a class="dropdown-item" href="/signup">SignUp</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/logout">LogOut</a>
+        </div>
+      </li>
+      {% endif %}
+     
+     
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="/search" method="get">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+                            {% for message in messages %}
+                            <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+                                <strong></strong>{{message}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            {% endfor %}
+
+{% block body %}
+
+{% endblock body %}
+
+
+
+ <div class="card text-white bg-dark mt-5">
+  <div class="card-header">About US</div>
+  <div class="card-body">
+    <h4 class="card-title">KAVYA</h4>
+    <h6 class="card-text">3rd year B.tech in Computer Scicence</h6>
+    <h6>University Visvesvarya College Of Engineering</h6>
+    <h6>Email:kavyareddysr07@gmail.com</h6>
+    <hr>
+    <p>Designed By : KAVYA Copyrights Reserves </p>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+  </body>
+</html>
