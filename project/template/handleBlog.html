@@ -4,13 +4,15 @@ Blog
 {% endblock title %}
 {% block body %}
 
+
 <div class="container mt-3 ">
   <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page"> Welcome {{request.user}} &nbsp; &nbsp; </li>
+    <li class="breadcrumb-item active" aria-current="page" style="color: #29539b;
+"> Welcome {{request.user}} &nbsp; &nbsp; </li>
 
     <div class="btn-groupIml-3">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria_haspopup="true" aria-expanded="true"> Add Note</button>
+    <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria_haspopup="true" aria-expanded="true"> Add Note</button>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="/">Home</a>
       <a class="dropdown-item" href="/addnote">Add Note</a>
@@ -29,26 +31,50 @@ Blog
 
 
 {% for post in posts reversed %}
-<a href="signin" style="border: 1px solid black;" >SignIn</a>
 {% load static %}
 
-<div class="container mt-3">
-  <div class="card" style="width: 25rem;">
-    <img src="{{post.img.url}}" class="card-img-top" alt="1">
-    <div class="card-title">
-      <h6 class="text-center">Title : {{post.title}}</h6>
-    </div>
-    <div class="card-body">
-      <p class="card-text">{{post.content}}</p>
-      <hr>
-      <p>
-      <b>Posted by : </b>{{post.author}} at {{post.timeStamp}}</p>
-      
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body" style="background-color: #e9bcb7;
+      background-image: linear-gradient(315deg, #e9bcb7 0%, #29524a 74%);
+      ">
+        <div class="card-title">
+          <h6 class="text-center"  >Title : {{post.title}}</h6>
+        </div>
+        <p class="card-text" >{{post.content}}</p>
+        <hr >
+      <p >
+      <b >Posted by : </b>{{post.author}} at {{post.timeStamp}}</p>
+    
+        
+      </div>
     </div>
   </div>
 
-
+  
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body"style="background-color: #7f5a83;
+      background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
+      ">
+        <div class="card-title">
+          <h6 class="text-center" style="color: white;">Title : {{post.title}}</h6>
+        </div>
+        <p class="card-text" style="color: white;">{{post.content}}</p>
+        <hr>
+      <p style="color: white;">
+      <b style="color: white;">Posted by : </b>{{post.author}} at {{post.timeStamp}}</p>
+    
+        
+      </div>
+    </div>
+  </div>
 </div>
+<br>
+<br>
+<br>
+
 {% endfor %}
 
 {% endblock body %}
