@@ -10,7 +10,6 @@ urlpatterns = [
     path('login',views.handlelogin,name='handlelogin'),
     path('logout',views.handlelogout,name='handlelogout'),
     path('addnote',views.addnote,name='addnote'),
-    path('search',views.search,name='search'),
     path('signin',views.signin,name='signin'),
     
 ]

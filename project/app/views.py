@@ -20,11 +20,15 @@ def about(request):
 def handleBlog(request):
     if not request.user.is_authenticated:
         return redirect('/login')
-        
-    posts=BlogPosts.objects.all()
-    context= {'posts':posts}
+    user=request.user
+
+    print (user)   
+    posts=BlogPosts.objects.filter(username__icontains=user)
+    context= {'posts': posts}
     return render(request,'handleBlog.html',context)
-    
+
+
+
 def contact(request):
     if request.method=='POST':
         fullname=request.POST.get('fullname')
@@ -44,10 +48,6 @@ def contact(request):
         messages.info(request,"Thanks for Contacting Us")
         return redirect('/contact')
         
-
-
-    
-
     return render(request,'contact.html')
     
 
@@ -62,12 +62,12 @@ def signup(request):
             pass2=request.POST['pass2']
             if pass1!=pass2:
 
-                messages.info("Password not match")
+                messages.info("Password does not match")
 
 
             try:
                  if User.objects.get(username=username):
-                     messages.info("username is taken")
+                     messages.info("Username is taken")
 
             except Exception as identifier:
                  pass
@@ -76,9 +76,10 @@ def signup(request):
             myuser.first_name=firstname
             myuser.last_name=lastname
             myuser.save()
-            messages.info(request,"signup successful")  
+            messages.info(request,"Signup is successful")  
 
     return render(request,'auth/signup.html')
+
 
 def handlelogin(request):
     if request.method=="POST":
@@ -96,43 +97,26 @@ def handlelogin(request):
    
     return render(request,'auth/login.html')
 
+
 def handlelogout(request):
     logout(request)
-    messages.success(request,"logout succesfull")
+    messages.success(request,"Logout is succesfull")
     return redirect('/login')
+
 
 def addnote(request):
     if request.method == 'POST':
 
+        username=request.POST.get('username')
         title=request.POST.get('title')
         content=request.POST.get('desc')
         name=request.POST.get('name')
-        query=BlogPosts(title=title,content=content, author=name)
+        query=BlogPosts(title=title,content=content, author=name,username=username)
         query.save()
         messages.info(request,'Your Post Has Been Saved')
         return redirect('/handleBlog')
         
-
-
     return render(request,'addnote.html')
-
-def search(request):
-    #query=request.GET['search']
-    query=request.POST.get('search',False)
-    print (query)
-
-    if len(query)>80:
-        
-        allNotes = BlogPost.objects.none()
-    else:
-        allNotesTitle=BlogPost.objects.filter(title__icontains=query)
-        allNotesContent=BlogPost.objects.filter(content__icontains=query)
-        allNotes=allPostsTitle.union(allNotesContent)
-    if allNotes.count() == 0:
-        messages.warning(request,"No Search Results")
-    params={'allNotes':allNotes,'query':query}        
-
-    return render(request,'search.html',params)    
 
 
 
@@ -143,7 +127,7 @@ def signin(request):
         user=authenticate(username=handleusername,password=handlepassword)
         if user is not None:
             login(request,user)
-            messages.info(request,"welcome to my website")
+            messages.info(request,"Welcome to The Notes Application")
             return redirect('/')
         else:
             messages.warning(request,"Invalid Credentials")

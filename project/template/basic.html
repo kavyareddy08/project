@@ -17,9 +17,11 @@
     </title>
   </head>
   <body>
+{% load static %}
+
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <img src="https://ci5.googleusercontent.com/proxy/d7rx3nCBxTJPoJcXLtFCzNYNX5f2Y1pxW81JR-Jn5gnfEG45GllBBTx5xYHDP2tzl5CsXxmf-cNSZPa5kZuO6iXFKfxPssV7Hq7QvS5vS4ZwDAljNZ_bqgYyI7lAx6ivJsa8Gh02Vex-FXztV6c61cvott5MFKT7=s0-d-e1-ft#https://www.freelogodesign.org/file/app/client/thumb/c007e71d-1790-4ff6-9dca-f6f3e63f0f8c_200x200.png"  width= "100" height ="50"alt="...">
+<h5 class="text-white bg-danger py-2 px-2">NOTE</h5>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -34,9 +36,6 @@
         <a class="nav-link" href="/handleBlog">Notes</a>
       </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="/about">About Us</a>
-      </li>
 
     <li class="nav-item">
         <a class="nav-link" href="/contact">Contact Us</a>
@@ -44,7 +43,7 @@
     {% if user.is_authenticated %}
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <b>welcome{{request.user}}</b></a>
+         <b>Welcome {{request.user}}</b></a>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/login">Login</a>
@@ -70,15 +69,12 @@
      
      
     </ul>
-    <form class="form-inline my-2 my-lg-0" action="/search" method="get">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+   
   </div>
 </nav>
-                            {% for message in messages %}
+ {% for message in messages %}
                             <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
-                                <strong></strong>{{message}}
+                                 <strong></strong>{{message}}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
@@ -92,14 +88,13 @@
 
 
  <div class="card text-white bg-dark mt-5">
-  <div class="card-header">About US</div>
+  <div class="card-header">About Us</div>
   <div class="card-body">
-    <h4 class="card-title">KAVYA</h4>
-    <h6 class="card-text">3rd year B.tech in Computer Scicence</h6>
-    <h6>University Visvesvarya College Of Engineering</h6>
-    <h6>Email:kavyareddysr07@gmail.com</h6>
+    <h4 class="card-title">Notes Application</h4>
+    <h6 class="card-text">AIRobotica Pvt Ltd.</h6>
+    <h6>Created by : Baibhab, Kavya, Shirisha</h6>
     <hr>
-    <p>Designed By : KAVYA Copyrights Reserves </p>
+    <p>Designed By : 2020 Copyrights Reserves </p>
   </div>
 </div>
 
